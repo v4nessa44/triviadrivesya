@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
+const dotenve = require('dotenv');
+dotenve.config({
+    path: './config.env'
+})
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/techmatchup');
+const mongourl = 'Your_mongo_db_url'
+mongoose.connect(mongourl);
 
 module.exports = mongoose.connection;
