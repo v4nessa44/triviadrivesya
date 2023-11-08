@@ -8,8 +8,8 @@ const {
   registerUser,
   updateUser,
   updateUserProfile,
-} = require("../controllers/userController.js");
-const { admin, protect } = require("../middleware/authMiddleware.js");
+} = require('../../controllers/userController')
+const { admin, protect } = require('../../middleware/authMiddleware')
 
 const router = express.Router();
 

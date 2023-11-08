@@ -6,8 +6,9 @@ const generateToken = require("../utils/generateToken.js");
 // @route POST /api/users
 // @access Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { email, password, username } = req.body;
 
+
+  const { email, password, username } = req.body;
   // check if user exists
   const userExists = await User.findOne({ email });
 
@@ -48,7 +49,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   // check if user exists and the passwords match
   if (user && (await user.matchPassword(password))) {
-    res.json({
+    res.status(200).json({
       _id: user._id,
       email: user.email,
       username: user.username,

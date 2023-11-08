@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 // Uncomment the following code once you have built the queries and mutations in the client folder
 // const { ApolloServer } = require('@apollo/server');
 // const { expressMiddleware } = require('@apollo/server/express4');
@@ -13,6 +14,7 @@ const routes = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 // Uncomment the following code once you have built the queries and mutations in the client folder
 // const server = new ApolloServer({
 //   typeDefs,
@@ -22,25 +24,26 @@ const app = express();
 // Uncomment the following code once you have built the queries and mutations in the client folder
 // const startApolloServer = async () => {
 //   await server.start();
-  
-  app.use(express.urlencoded({ extended: true }));
-  app.use(express.json());
-  
-  // Uncomment the following code once you have built the queries and mutations in the client folder
-  // app.use('/graphql', expressMiddleware(server));
 
-  // Comment out this code once you have built out queries and mutations in the client folder
-  app.use(routes);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors())
 
-  // if we're in production, serve client/dist as static assets
-  if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+// Uncomment the following code once you have built the queries and mutations in the client folder
+// app.use('/graphql', expressMiddleware(server));
 
-    // Uncomment this code once you have built out queries and mutations in the client folder
-    // app.get('*', (req, res) => {
-      // res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-    // });
-  } // closes if (process.env.NODE_ENV === 'production') condition
+// Comment out this code once you have built out queries and mutations in the client folder
+app.use(routes);
+
+// if we're in production, serve client/dist as static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  // Uncomment this code once you have built out queries and mutations in the client folder
+  // app.get('*', (req, res) => {
+  // res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  // });
+} // closes if (process.env.NODE_ENV === 'production') condition
 
 // Uncomment this code once you have built out queries and mutations in the client folder
 //   db.once('open', () => {
