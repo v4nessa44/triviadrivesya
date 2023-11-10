@@ -1,5 +1,7 @@
 body {
   background-color:rgb(92, 201, 255);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgb(121, 35, 202);
 }
 
 #root {
