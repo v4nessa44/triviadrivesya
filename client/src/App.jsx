@@ -1,32 +1,33 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./screens/Home"; // Import your Home component
-import Register from "./screens/Register"; // Import your Register component
-import Login from "./screens//Login"; // Import your Login component
-import PlayGame from "./screens/PlayGame";
-// import Profile from "./Profile"; // Import your Profile component
+import { UserContextProvider } from "./contextApi/UserContextProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Uncomment import statement below after building queries and mutations
+// import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <Header />
-      <h1>My trivia app</h1>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/play-game" element={<PlayGame />} />
-        {/* <Route path="/profile" element={Profile} /> */}
-      </Routes>
-    </div>
+    <UserContextProvider>
+      <div className="flex-column justify-center align-center min-100-vh bg-primary">
+        <Header />
+        <Outlet />
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </UserContextProvider>
   );
 }
 
