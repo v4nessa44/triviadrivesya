@@ -1,29 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const { Schema, model } = require('mongoose');
-
-const gameHistorySchema = new Schema(
-  {
-    username: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    score: {
-      type: Number,
-      required: true,
-    },
+const gameHistorySchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
-    collection: 'gamehistories', 
-  }
-);
+  category: {
+    type: String,
+    required: true,
+  },
+  score: {
+    type: Number,
+    required: true,
+  },
+  favorite: {
+    type: Boolean,
+    default: false, // Default to false, indicating not a favorite
+  },
+});
 
-const GameHistory = model('GameHistory', gameHistorySchema);
+const GameHistory = mongoose.model("GameHistory", gameHistorySchema);
 
 module.exports = GameHistory;
