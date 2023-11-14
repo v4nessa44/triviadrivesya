@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header>
       <h1 onClick={() => goTo("/")} className="logo">
-        TRIVIA-QUIZ
+        QUIZO
       </h1>
       <div className="con">
         {user ? (
