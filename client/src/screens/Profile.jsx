@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 function Profile() {
   const [gameHistory, setGameHistory] = useState([]);
-
-
-  const userId = "";
+  
+  // Assuming you have the user ID available, replace 'yourUserId' with the actual user ID
+  const userId = 'yourUserId';
 
   useEffect(() => {
     // Fetch user's game history
@@ -12,8 +12,7 @@ function Profile() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Include authentication token if required
-        // "Authorization": `Bearer ${yourAuthToken}`,
+
       },
     })
       .then((res) => res.json())
