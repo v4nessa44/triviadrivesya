@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Create a data object to send in the POST request
@@ -22,29 +23,34 @@ function Login() {
       password: password,
     };
 
-    // Send a POST request using the fetch function
-    fetch("http://localhost:3001/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data), // Convert the data object to a JSON string
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log("Login successful");
-          navigate("/play-game");
-          // Handle successful login here
-        } else {
-          console.error("Login failed");
-          alert("error logging in");
-          // Handle login failure here
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        // Handle any network or other errors here
+    try {
+      // Send a POST request using the fetch function
+      const response = await fetch("http://localhost:3001/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // Convert the data object to a JSON string
       });
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful");
+        // Store the token in state or cookie for future requests
+        const token = responseData.token;
+        // ... store the token in state or cookie (use a state management library or cookies)
+        navigate("/play-game");
+        // Handle successful login here
+      } else {
+        console.error("Login failed");
+        alert("Error logging in");
+        // Handle login failure here
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle any network or other errors here
+    }
   };
 
   return (

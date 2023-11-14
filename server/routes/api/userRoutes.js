@@ -8,54 +8,50 @@ const {
   registerUser,
   updateUser,
   updateUserProfile,
-} = require('../../controllers/userController')
-const { admin, protect } = require('../../middleware/authMiddleware')
+} = require('../../controllers/userController');
+const { admin, protect } = require('../../middleware/authMiddleware');
 
 const router = express.Router();
 
 // @desc Register a new user
-// @route POST /api/users
+// @route POST /api/users/register   // Changed from "/" to "/register" for clarity
 // @access Public
-router.route("/").post(registerUser);
+router.post("/register", registerUser);
 
 // @desc Authenticate user & get token
 // @route POST /api/users/login
 // @access Public
-router.route("/login").post(authUser);
+router.post("/login", authUser);
 
 // @desc Get user profile
 // @route GET /api/users/profile
 // @access Private
 // protect middleware is going to run whenever we hit /api/users/profile
-router.route("/profile").get(protect, getUserProfile);
+router.get("/profile", protect, getUserProfile);
 
 // @desc Get all users - admins only
 // @route GET /api/users
 // @access Private/Admin
-/* this route goes through two middlewares protect and admin, making sure
-    the user is both loged in and is an admin before he can access this
-    route 
-*/
-router.route("/").get(protect, admin, getUsers);
+router.get("/", protect, admin, getUsers);
 
 // @desc Update user profile
 // @route PUT /api/users/profile
 // @access Private
-router.route("/profile").put(protect, updateUserProfile);
+router.put("/profile", protect, updateUserProfile);
 
-// @desc delete user
+// @desc Delete user
 // @route DELETE /api/users/:id
 // @access Private/Admin
-router.route("/:id").delete(protect, admin, deleteUser);
+router.delete("/:id", protect, admin, deleteUser);
 
 // @desc Get user by ID
 // @route GET /api/users/:id
 // @access Private/Admin
-router.route("/:id").get(protect, admin, getUserById);
+router.get("/:id", protect, admin, getUserById);
 
 // @desc Update user
 // @route PUT /api/users/:id
 // @access Private/Admin
-router.route("/:id").put(protect, admin, updateUser);
+router.put("/:id", protect, admin, updateUser);
 
 module.exports = router;
