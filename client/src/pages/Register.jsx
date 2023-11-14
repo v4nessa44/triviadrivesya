@@ -53,7 +53,7 @@ function Register() {
           type="password"
           placeholder="enter confirm password"
         />
-        <button onClick={handleRegister}>Register</button>
+        <button onClick={handleRegister}>Login</button>
       </div>
     </div>
   );

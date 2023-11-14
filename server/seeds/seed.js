@@ -1,22 +1,32 @@
-const db = require('../config/connection');
-const cleanDB = require('./cleanDB');
-const { Tech, GameHistory } = require('../models');
+// seed.js
 
-const techData = require('./techData.json');
+const mongoose = require("mongoose");
+const connectDB = require("../config/connection.js");
+const Question = require("../models/Question.js");
+const dotenv = require("dotenv");
+const questionsData = require("./questions.js");
 
-const historyData = require('./historyData.json');
+// configure .env file
+dotenv.config();
 
+// connect to database
+connectDB();
 
-db.once('open', async () => {
-  await cleanDB('Tech', 'teches');
+const seedDatabase = async () => {
+  try {
+    // Clear existing data
+    await Question.deleteMany({});
 
-  await cleanDB('GameHistory', 'gamehistories')
+    // Insert the questions into the database
+    await Question.insertMany(questionsData);
 
-  await Tech.insertMany(techData);
+    console.log("Database seeded successfully.");
+  } catch (error) {
+    console.error("Error seeding database:", error.message);
+  } finally {
+    // Close the database connection
+    mongoose.connection.close();
+  }
+};
 
-  
-  await GameHistory.insertMany(historyData);
-
-  console.log('Technologies seeded!');
-  process.exit(0);
-});
+seedDatabase();

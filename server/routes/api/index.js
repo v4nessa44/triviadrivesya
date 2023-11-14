@@ -1,15 +1,10 @@
+const router = require("express").Router();
+const userRoutes = require("./user-routes.js");
+const questionRoutes = require("./question-routes.js");
+const scoreRoutes = require("./score-routes.js");
 
-const express = require("express");
-const matchupRoutes = require("./matchup-routes");
-const techRoutes = require("./tech-routes.js");
-const userRoutes = require("./userRoutes");
-const gameHistoryRoutes = require("./gamehistory-routes.js");
-
-const router = express.Router();
-
-router.use("/matchup", matchupRoutes);
-router.use("/tech", techRoutes);
 router.use("/users", userRoutes);
-router.use("/gamehistory", gameHistoryRoutes);
+router.use("/questions", questionRoutes);
+router.use("/scores", scoreRoutes);
 
 module.exports = router;

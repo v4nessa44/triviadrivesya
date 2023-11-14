@@ -159,12 +159,12 @@ const UserContextProvider = ({ children }) => {
 
   // store user in local storage
   const storeUser = (user) => {
-    localStorage.setItem("trivia-user", JSON.stringify(user));
+    localStorage.setItem("quizo-user", JSON.stringify(user));
   };
 
   // get stored user in local storage
   const getUser = () => {
-    return JSON.parse(localStorage.getItem("trivia-user")) || null;
+    return JSON.parse(localStorage.getItem("quizo-user")) || null;
   };
 
   const addStringAtRandomPosition = (array, newString) => {
