@@ -32,3 +32,30 @@ exports.getGameHistoriesByUser = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
+
+// Controller to mark a category as favorite
+exports.markFavoriteCategory = async (req, res) => {
+  const { userId, category } = req.body;
+
+  try {
+    // Find the user's game history entry for the specified category
+    const gameHistory = await GameHistory.findOne({ username: userId, category });
+
+    if (!gameHistory) {
+      return res.status(404).json({ error: "Game history not found for the specified category" });
+    }
+
+    // Mark the category as a favorite
+    gameHistory.favorite = true;
+
+    // Save the updated game history entry
+    await gameHistory.save();
+
+    res.json(gameHistory);
+  } catch (error) {
+    console.error("Error marking category as favorite:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
