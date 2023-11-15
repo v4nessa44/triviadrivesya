@@ -53,7 +53,7 @@ a.active {
   padding: 20px;
 }
 .form {
-  background-color: rgb(0, 0, 55);
+  background-color: rgb(0, 17, 55);
   padding: 30px;
   border-radius: 10px;
   display: flex;
@@ -111,7 +111,7 @@ select {
   border: none;
 }
 .oneScore {
-  color: #3498db;
+  color: rgb(77, 163, 255);
 }
 
 [type="radio"]:checked,
