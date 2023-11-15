@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
-const userBaseUrl = "http://localhost:5001/api/users";
-const scoresBaseUrl = "http://localhost:5001/api/scores";
+const userBaseUrl = "http://localhost:5002/api/users";
+const scoresBaseUrl = "http://localhost:5002/api/scores";
 
 // eslint-disable-next-line react/prop-types
 const UserContextProvider = ({ children }) => {
