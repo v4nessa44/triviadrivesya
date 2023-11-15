@@ -1,10 +1,11 @@
 {
-  "name": "tech-matchup-app",
+  "name": "quizo",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build",
+    "start": "cd server && npm run watch & cd client && npm run dev",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
@@ -16,6 +17,11 @@
     "concurrently": "^5.3.0"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.1.1",
+    "nodemon": "^3.0.1",
     "vite": "^4.5.0"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

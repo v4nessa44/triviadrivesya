@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 
 const UserContext = createContext();
 
-const userBaseUrl = "http://localhost:5001/api/users";
-const scoresBaseUrl = "http://localhost:5001/api/scores";
+const userBaseUrl = "http://localhost:5002/api/users";
+const scoresBaseUrl = "http://localhost:5002/api/scores";
 
 // eslint-disable-next-line react/prop-types
 const UserContextProvider = ({ children }) => {
@@ -77,31 +77,46 @@ const UserContextProvider = ({ children }) => {
   };
 
   const getCategories = async () => {
-    const res = await axios.get("https://opentdb.com/api_category.php");
-    if (res.data.trivia_categories) {
-      setCategories(res.data.trivia_categories);
-      setSelectedCat(res.data.trivia_categories[0].id);
-    }
+    setCategories([
+      "music",
+      "sport_and_leisure",
+      "film_and_tv",
+      "arts_and_literature",
+      "history",
+      "society_and_culture",
+      "science",
+      "geography",
+      "food_and_drink",
+      "general_knowledge"
+    ].map(category => ({
+      id: category,
+      name: category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+    })));    
   };
+
+
 
   const getQuestions = async () => {
     if (selectedCat) {
-      const res = await axios.get(
-        `https://opentdb.com/api.php?amount=10&type=multiple&category=` +
-          selectedCat
-      );
+      const res = await axios.get(`https://the-trivia-api.com/v2/questions?limit=10&categories=${selectedCat}`, {
+        headers: {
+          'x-api-key': 'xsCeGQ4rXVXxiB5VpebfN2gSz',
+          'Content-Type': 'application/json'
+        }
+      });
 
       console.log("questions:", res);
-      if (res.data.results) {
-        const structuredQuestions = res.data.results.map((q) => {
+      if (res.data) {
+        const structuredQuestions = res.data.map((q) => {
           q.answerArray = addStringAtRandomPosition(
-            q.incorrect_answers,
-            q.correct_answer
+            q.incorrectAnswers,
+            q.correctAnswer
           );
           return q;
         });
 
         setQuestions(structuredQuestions);
+        console.log(questions);
       }
     }
   };

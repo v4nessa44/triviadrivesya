@@ -25,12 +25,12 @@ const Question = () => {
       return toast.warn("Select an answer!");
     }
 
-    if (currentQuestion.correct_answer === selectedValue) {
+    if (currentQuestion.correctAnswer === selectedValue) {
       setScore(score + 1);
       nextQuestion();
       setAns("");
     } else {
-      setAns(currentQuestion.correct_answer);
+      setAns(currentQuestion.correctAnswer);
       setTimeout(() => {
         setAns("");
         nextQuestion();
@@ -48,7 +48,7 @@ const Question = () => {
       {currentQuestion && currentQuestion !== "end" ? (
         <>
           <h1>
-            {currentIndex}. {JSON.stringify(currentQuestion?.question)}
+            {currentIndex}. {JSON.stringify(currentQuestion?.question.text)}
           </h1>
           <div className="answers">
             {currentQuestion?.answerArray.map((a, i) => (
