@@ -77,7 +77,7 @@ button {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  background-color: #3498db;
+  background-color: #6d38ff;
   color: white;
 }
 button:hover {
@@ -99,7 +99,7 @@ button:hover {
 }
 .question h1,
 .score {
-  color: rgb(0, 0, 55);
+  color: rgb(128, 31, 202);
   font-size: 30px;
 }
 .correction {
