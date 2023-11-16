@@ -126,7 +126,7 @@ select {
   cursor: pointer;
   line-height: 20px;
   display: inline-block;
-  color: #666;
+  color: rgb(74, 34, 235)
 }
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
@@ -138,7 +138,7 @@ select {
   height: 18px;
   border: 1px solid #ddd;
   border-radius: 100%;
-  background: #fff;
+  background: rgb(118, 35, 253);
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
