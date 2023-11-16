@@ -26,8 +26,8 @@ header {
 .logedInUser {
   padding: 10px 30px;
   border-radius: 5px;
-  background-color: pink;
-  color: #1b5b86;
+  background-color: rgb(149, 190, 255);
+  color: #2242c5;
   font-weight: bold;
 }
 .con {
