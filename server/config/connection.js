@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const dotenve = require('dotenv');
-dotenve.config({
-    path: './config.env'
-})
+const dotenv = require('dotenv');
 
-const mongourl = 'Your_mongo_db_url'
+dotenv.config({
+    path: './config.env'
+});
+
+const mongourl = 'mongodb+srv://admin:admin321@cluster0.nmdv2ie.mongodb.net/techmatchup?retryWrites=true&w=majority';
 mongoose.connect(mongourl);
 
 module.exports = mongoose.connection;
