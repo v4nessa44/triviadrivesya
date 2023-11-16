@@ -64,6 +64,7 @@ a.active {
 .form h2 {
   color: white;
   text-align: center;
+  font-size:25px;
 }
 .form input {
   /* width: 100%; */
